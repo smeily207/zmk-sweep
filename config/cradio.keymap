@@ -10,7 +10,7 @@
 #define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
 
 
-#define GLT (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_SPORT_POWER_WEDGE))
+#define GLT (ZMK_HID_USAGE(HID_USAGE_ID, HID_USAGE_SPORT_POWER_WEDGE))
 / {
     behaviors {
         ht: hold_tap {
