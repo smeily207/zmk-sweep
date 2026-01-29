@@ -20,6 +20,16 @@
 
 / {
     behaviors {
+      ht: hold_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <220>;
+        quick-tap-ms = <150>;
+        require-prior-idle-ms = <100>;
+        bindings = <&kp>, <&kp>;
+      };
+
       TD(l2_bspc, tap_dance_l2, &sl 2, &kp BSPC)
       TD(l3_space, tap_dance_l3, &sl 3, &kp SPACE)
       TD(l4_enter, tap_dance_l4, &sl 4, &kp ENTER)
