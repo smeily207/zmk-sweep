@@ -23,7 +23,7 @@
       TD(l2_bspc, tap_dance_l2, &mo 2, &kp BSPC)
       TD(l3_space, tap_dance_l3, &mo 3, &kp SPACE)
       TD(l4_enter, tap_dance_l4, &mo 4, &kp ENTER)
-      TD(l5_tab, tap_dance_l5&mo 5, &kp TAB)
+      TD(l5_tab, tap_dance_l5, &mo 5, &kp TAB)
     };
 
     keymap {
