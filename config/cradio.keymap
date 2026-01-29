@@ -15,18 +15,11 @@
   compatible = "zmk,behavior-tap-dance"; \
   #binding-cells = <0>; \
   tapping-term-ms = <150>; \
-  bindings = <b1> <b2>; \
+  bindings = <b1>, <b2>; \
 };
 
 / {
     behaviors {
-test: tap_dance_0 {
-  compatible = "zmk,behavior-tap-dance";
-  #binding-cells = <0>;
-  tapping-term-ms = <150>;
-  bindings = <&kp N> <&kp M>;
-};
-
       TD(l2_bspc, &mo 2, &kp BSPC)
       TD(l3_space, &mo 3, &kp SPACE)
       TD(l4_enter, &mo 4, &kp ENTER)
