@@ -11,7 +11,7 @@
 #define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
 #define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
 
-#define TD(id, b1, b2) td_id: tap_dance_0 { \
+#define TD(id, b1, b2) id: tap_dance_0 { \
   behaviors: "zmk,behavior-tap-dance"; \
   #binding-cells = <0>; \
   tapping-term-ms = <150>; \
@@ -40,7 +40,7 @@
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &td_l5_tab  &td_l4_enter &td_l3_space &td_l2_bspc
+                                            &l5_tab     &l4_enter      &l3_space  &l2_bspc
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
