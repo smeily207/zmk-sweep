@@ -15,7 +15,7 @@
   compatible = "zmk,behavior-tap-dance"; \
   #binding-cells = <0>; \
   tapping-term-ms = <150>; \
-  bindings = <b1> <b2> \
+  bindings = <b1> <b2>; \
 };
 
 / {
