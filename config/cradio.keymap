@@ -43,7 +43,7 @@
         require-prior-idle-ms = <100>;
         bindings = <&sk>, <&kp>;
       };
-      ht_layer: hold_tap {
+      ht_layer: hold_tap_layer {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
         flavor = "tap-preferred";
