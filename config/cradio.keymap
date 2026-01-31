@@ -52,7 +52,7 @@
         require-prior-idle-ms = <100>;
         bindings = <&sl>, <&kp>;
       };
-      TD(gt_default, tap_dance_gt_default, <&ht_layer 0 0>, <&to 0>,)
+      TD(gt_default, tap_dance_gt_default, <&ht_layer 0 0>, <&to 0>)
       TD(rthumb1, tap_dance_rthumb1, <&ht_layer 1 1>, <&to 1>)
       TD(rthumb2, tap_dance_rthumb2, <&ht_layer 2 2>, <&to 2>)
       TD(rthumb3, tap_dance_rthumb3, <&ht_layer 3 3>, <&to 3>)
