@@ -57,7 +57,7 @@
       TD(rthumb2, tap_dance_rthumb2, <&ht_layer 2 2>, <&to 2>)
       TD(rthumb3, tap_dance_rthumb3, <&ht_layer 3 3>, <&to 3>)
       TD(rthumb4, tap_dance_rthumb4, <&ht_layer 4 4>, <&to 4>)
-      TD(spc_tab, dance_spc_tab, <&kp SPC>, <&kp TAB>)
+      TD(spc_tab_enter, dance_spc_tab_enter, <&kp SPC>, <&kp TAB>, <&kp RET>)
     };
 
     keymap {
@@ -74,7 +74,7 @@
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . ">"    │ / ?      │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &kp SPC    &hsk LGUI      &hsk SHIFT &rthumb1
+                                         &spc_tab_enter &hsk LGUI      &hsk SHIFT &rthumb1
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
