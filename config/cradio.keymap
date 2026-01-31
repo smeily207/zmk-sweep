@@ -41,7 +41,7 @@
         tapping-term-ms = <220>;
         quick-tap-ms = <150>;
         require-prior-idle-ms = <100>;
-        bindings = <&sk>, <&kp>;
+        bindings = <&kp>, <&sk>;
       };
       ht_layer: hold_tap_layer {
         compatible = "zmk,behavior-hold-tap";
@@ -50,7 +50,7 @@
         tapping-term-ms = <220>;
         quick-tap-ms = <150>;
         require-prior-idle-ms = <100>;
-        bindings = <&sl>, <&kp>;
+        bindings = <&kp>, <&sl>;
       };
       TD(gt_default, tap_dance_gt_default, <&ht_layer 0 0>, <&to 0>)
       TD(rthumb1, tap_dance_rthumb1, <&ht_layer 1 1>, <&to 1>)
@@ -74,7 +74,7 @@
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . ">"    │ / ?      │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &kp RET    &kp LGUI       &ht SPC SHIFT &rthumb1 1
+                                             &kp RET    &kp LGUI       &ht SPACE SHIFT &rthumb1
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -91,7 +91,7 @@
         //│ CAPS     │  7       │  8       │  9       │  0       │   │          │          │          │          │          │
            &caps_word  &kp N7     &kp N8     &kp N9     &kp N0         &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &gt_default &kp BSPC       &kp ESC    &rthumb2 2
+                                            &gt_default &kp BSPC       &kp ESC    &rthumb2
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -108,7 +108,7 @@
         //│          │          │          │          │          │   │  &       │  _       │  +       │  │       │          │
             &trans     &trans     &trans     &trans     &trans         &kp AMPS   &kp UNDER  &kp PLUS   &kp PIPE   &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &gt_default &trans         &trans     &rthumb3 3
+                                            &gt_default &trans         &trans     &rthumb3
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -126,7 +126,7 @@
         //│          │          │          │          │          │   │          │          │          │          │          │
             &trans     &trans     &trans    &trans      &trans         &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &gt_default &trans         &trans     &rthumb4 4
+                                            &gt_default &trans         &trans     &rthumb4
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
