@@ -5,20 +5,25 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-// Home row mods macro
-// TODO
-// remove home row mods and try sticky keys or something like that for tap dance
-#define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
-#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RCTRL k2  &ht RALT k3  &ht RSHFT k4
-
-#define TD(use_name, internal_name, b1, b2) use_name: internal_name { \
+#define TD(use_name, internal_name, tap_behavior) use_name: internal_name { \
   compatible = "zmk,behavior-tap-dance"; \
   #binding-cells = <0>; \
-  tapping-term-ms = <150>; \
-  bindings = <b1>, <b2>; \
+  tapping-term-ms = <200>; \
+  bindings = tap_behavior; \
 };
 
+/* #define COMBO(name, key_positiones, binding) name { \ */
+/*         timout_ms = <50>; \ */
+/*         key-position = <key_positiones>; \ */
+/*         bindings = <binding>; \ */
+/*       }; */
+
+
 / {
+    /* combos { */
+    /*   compatible = "zmk,combo"; */
+    /*   COMBO(sticky_shift, ) */
+    /* }; */
     behaviors {
       ht: hold_tap {
         compatible = "zmk,behavior-hold-tap";
@@ -29,11 +34,30 @@
         require-prior-idle-ms = <100>;
         bindings = <&kp>, <&kp>;
       };
-
-      TD(l2_bspc, tap_dance_l2, &sl 1, &kp BSPC)
-      TD(l3_space, tap_dance_l3, &sl 2, &kp SPACE)
-      TD(l4_enter, tap_dance_l4, &sl 3, &kp ENTER)
-      TD(l5_tab, tap_dance_l5, &sl 4, &kp TAB)
+      hst: hold_sticky_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <220>;
+        quick-tap-ms = <150>;
+        require-prior-idle-ms = <100>;
+        bindings = <&sk>, <&kp>;
+      };
+      ht_layer: hold_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <220>;
+        quick-tap-ms = <150>;
+        require-prior-idle-ms = <100>;
+        bindings = <&sl>, <&kp>;
+      };
+      TD(gt_default, tap_dance_gt_default, <&ht_layer 0 0>, <&to 0>,)
+      TD(rthumb1, tap_dance_rthumb1, <&ht_layer 1 1>, <&to 1>)
+      TD(rthumb2, tap_dance_rthumb2, <&ht_layer 2 2>, <&to 2>)
+      TD(rthumb3, tap_dance_rthumb3, <&ht_layer 3 3>, <&to 3>)
+      TD(rthumb4, tap_dance_rthumb4, <&ht_layer 4 4>, <&to 4>)
+      TD(spc_tab, dance_spc_tab, <&kp SPC>, <&kp TAB>)
     };
 
     keymap {
@@ -45,12 +69,12 @@
             &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │ ' "      │
-            HRML(A,        S,         D,         F)     &kp G          &kp H      HRMR(J,        K,         L,        SQT)
+            &kp A       &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L     &kp SQT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . ">"    │ / ?      │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &l5_tab     &l4_enter      &l3_space  &l2_bspc
+                                             &kp SPC    &hsk LGUI      &hsk SHIFT &rthumb1
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -67,7 +91,7 @@
         //│ CAPS     │  7       │  8       │  9       │  0       │   │          │          │          │          │          │
            &caps_word  &kp N7     &kp N8     &kp N9     &kp N0         &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &kp ESC        &trans     &trans
+                                            &gt_default &kp BSPC       &kp ESC    &rthumb2
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -84,11 +108,12 @@
         //│          │          │          │          │          │   │  &       │  _       │  +       │  │       │          │
             &trans     &trans     &trans     &trans     &trans         &kp AMPS   &kp UNDER  &kp PLUS   &kp PIPE   &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                            &gt_default &trans         &trans     &rthumb3
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-        // empty layer can be filles like needed
+        // empty layer can be filled as needed
+        // probably as gaming layer used when default layer is moved as another keymap
         fourth_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
@@ -101,7 +126,7 @@
         //│          │          │          │          │          │   │          │          │          │          │          │
             &trans     &trans     &trans    &trans      &trans         &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                            &gt_default &trans         &trans     &rthumb4
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -117,7 +142,7 @@
         //│          │          │          │ CLEAR BT │PROFILE 2 │   │          │          │          │          │          │
             &trans     &trans     &trans    &bt BT_CLR &bt BT_SEL 2    &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                            &gt_default &trans         &trans     &none
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
