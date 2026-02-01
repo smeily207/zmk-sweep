@@ -43,7 +43,7 @@
       tri_layer {
         if-layers = <1 2>;
         then-layer = <3>;
-      }
+      };
     };
 
     keymap {
