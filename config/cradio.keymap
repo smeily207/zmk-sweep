@@ -13,7 +13,7 @@
 };
 
 #define COMBO(name, key_positiones, binding) name { \
-        timout-ms = <50>; \
+        timeout-ms = <50>; \
         key-positions = <key_positiones>; \
         bindings = <binding>; \
       };
