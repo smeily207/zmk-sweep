@@ -20,7 +20,7 @@
 
  / {
    combos {
-      compatible = "zmk,combo";
+      compatible = "zmk,combos";
       COMBO(toggel_shift, 34 17, &kt LSHIFT)
       COMBO(toggel_mod, 34 16, &kt LGUI)
       COMBO(toggel_alt, 16 34, &kt LALT)
