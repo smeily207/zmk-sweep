@@ -18,7 +18,6 @@
         bindings = <binding>; \
       };
 
-
 / {
     combos {
       compatible = "zmk,combo";
@@ -45,7 +44,7 @@
         if-layers = <1 2>;
         then-layer = <3>;
       }
-    }
+    };
 
     keymap {
         compatible = "zmk,keymap";
