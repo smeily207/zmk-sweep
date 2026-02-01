@@ -18,14 +18,19 @@
         bindings = <binding>; \
       };
 
-/ {
-    combos {
+ / {
+   combos {
       compatible = "zmk,combo";
       COMBO(toggel_shift, 34 17, &kt LSHIFT)
       COMBO(toggel_mod, 34 16, &kt LGUI)
       COMBO(toggel_alt, 16 34, &kt LALT)
       COMBO(toggel_ctrl, 17 34, &kt LCTRL)
     };
+ };
+
+
+
+/ {
     behaviors {
       ht: hold_tap {
         compatible = "zmk,behavior-hold-tap";
@@ -37,7 +42,6 @@
         bindings = <&kp>, <&kp>;
       };
     };
-
     conditional_layers {
       compatible = "zmk,conditional-layers";
       tri_layer {
