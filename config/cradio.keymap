@@ -32,21 +32,15 @@
       COMBO(combo_ae, 4 15, &kp DE_A_UMLAUT)
       COMBO(combo_ue, 3 15, &kp DE_U_UMLAUT)
       COMBO(combo_oe, 16 15, &kp DE_O_UMLAUT)
-      COMBO(combo_bsp, 8 7, &kp BSPC)
-      COMBO(combo_tab, 0 1, &kp TAB)
-      COMBO(combo_enter, 1 2, &kp ENTER)
     };
     behaviors {
-      ht: hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        #binding-cells = <2>;
-        flavor = "tap-preferred";
-        tapping-term-ms = <220>;
-        quick-tap-ms = <150>;
-        require-prior-idle-ms = <100>;
-        bindings = <&kp>, <&kp>;
-      };
-      
+       conditional_layers {
+          compatible = "zmk,conditional-layers";
+          tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+          };
+       };
     };
 
     keymap {
@@ -55,8 +49,8 @@
             bindings = <
             &kp DE_J      &kp DE_D      &kp DE_U      &kp DE_A      &kp DE_X          &kp DE_P      &kp DE_H      &kp DE_L      &kp DE_M      &kp DE_W
             &kp DE_C      &kp DE_T      &kp DE_I      &kp DE_E      &kp DE_O          &kp DE_N      &kp DE_R      &kp DE_S      &kp DE_G      &kp DE_Q
-            &kp DE_F      &kp DE_V      &none      &none      &kDE_p B          &DE_kp Z      &DE_kp Y      &DE_kp COMMA  &DE_kp DOT    &DE_kp K
-                                             &none      &none          &none      &none
+            &kp DE_F      &kp DE_V      &none         &none         &kp DE_B          &DE_kp Z      &DE_kp Y      &DE_kp COMMA  &DE_kp DOT    &DE_kp K
+                                             &lt 2 TAB      &kp ENTER         &kp SPC      &lt 1 BSPC
             >;
        };
 
