@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: MIT
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
+// #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include "keys_de.h"
 
 #define TD(name, ...) name: name { \
   compatible = "zmk,behavior-tap-dance"; \
@@ -26,13 +27,15 @@
 }; 
 
 / {
-    /* combos { */
-    /*   compatible = "zmk,combos"; */
-    /*   COMBO(toggel_shift, 34 17, &kt LSHIFT) */
-    /*   COMBO(toggel_mod, 34 16, &kt LGUI) */
-    /*   COMBO(toggel_alt, 16 34, &kt LALT) */
-    /*   COMBO(toggel_ctrl, 17 34, &kt LCTRL) */
-    /* }; */
+    combos {
+      compatible = "zmk,combos";
+      COMBO(combo_ae, 4 15, &kp DE_A_UMLAUT)
+      COMBO(combo_ue, 3 15, &kp DE_U_UMLAUT)
+      COMBO(combo_oe, 16 15, &kp DE_O_UMLAUT)
+      COMBO(combo_bsp, 8 7, &kp BSPC)
+      COMBO(combo_tab, 0 1, &kp TAB)
+      COMBO(combo_enter, 1 2, &kp ENTER)
+    };
     behaviors {
       ht: hold_tap {
         compatible = "zmk,behavior-hold-tap";
@@ -43,68 +46,42 @@
         require-prior-idle-ms = <100>;
         bindings = <&kp>, <&kp>;
       };
-      STICKY_TOGGLE_TAP_DANCE(shift_td, LSHIFT)
-      STICKY_TOGGLE_TAP_DANCE(mod_td, LGUI)
-      STICKY_TOGGLE_TAP_DANCE(alt_td, LALT)
-      STICKY_TOGGLE_TAP_DANCE(ctrl_td, LCTRL)
-      TD(l1, <&sl 1>, <&to 1>)
-      TD(l2, <&sl 2>, <&to 2>)
-      TD(l3, <&sl 3>, <&to 3>)
-      TD(l4, <&sl 4>, <&to 4>)
-      TD(l5, <&sl 5>, <&to 5>)
+      
     };
 
     keymap {
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-            &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
-            &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L      &kp SQT
-            &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
-                                             &none      &none          &none      &l1
+            &kp DE_J      &kp DE_D      &kp DE_U      &kp DE_A      &kp DE_X          &kp DE_P      &kp DE_H      &kp DE_L      &kp DE_M      &kp DE_W
+            &kp DE_C      &kp DE_T      &kp DE_I      &kp DE_E      &kp DE_O          &kp DE_N      &kp DE_R      &kp DE_S      &kp DE_G      &kp DE_Q
+            &kp DE_F      &kp DE_V      &none      &none      &kDE_p B          &DE_kp Z      &DE_kp Y      &DE_kp COMMA  &DE_kp DOT    &DE_kp K
+                                             &none      &none          &none      &none
             >;
-        };
-        
-        modifier_layer {
+       };
+
+       second_layer {
             bindings = <
-            &none    &none    &none          &none      &none          &none      &none        &none       &none    &none
-            &kp TAB  &kp RET  &ctrl_td       &mod_td    &none          &none      &shift_td    &alt_td     &kp SPC  &kp BSPC
-            &none    &none    &none          &none      &none          &none      &none        &none       &none    &none
-                                             &to 0      &none          &none      &l2
-            >;
-        };
-        second_layer {
-            bindings = <
-            &kp INS     &kp N1     &kp N2     &kp N3     &kp RBKT       &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp COLON
-            &kp DEL     &kp N4     &kp N5     &kp N6     &trans         &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT   &kp SEMI
-            &caps_word  &kp N7     &kp N8     &kp N9     &kp N0         &trans     &trans     &trans     &trans     &trans
-                                              &to 0      &kp ESC        &trans     &l3
+            &trans       &kp N1     &kp N2     &kp N3        &trans          &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp COLON
+            &trans       &kp N4     &kp N5     &kp N6        &trans          &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT   &kp SEMI
+            &caps_word   &kp N7     &kp N8     &kp N9        &kp N0          &trans     &trans     &trans     &trans     &trans
+                                               &trans        &kp ESC         &trans     &trans
             >;
         };
 
-        third_layer {
+       third_layer {
             bindings = <
-            &trans     &kp LBKT   &kp LBRC   &kp RBRC   &trans         &kp CARET  &kp LPAR   &kp RPAR   &kp RBKT   &kp TILDE
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp ASTRK  &kp MINUS  &kp EQUAL  &kp BSLH   &kp GRAVE
-            &trans     &trans     &trans     &trans     &trans         &kp AMPS   &kp UNDER  &kp PLUS   &kp PIPE   &tog 4
-                                             &to 0      &trans         &trans     &l4
+            &trans     &trans     &kp LDE_BRC   &kp DE_RBRC   &kp DE_CARET      &kp DE_EXCL   &kp DE_LT     &kp DE_GT     &kp DE_EQ     &kp DE_AMPS
+            &kp DE_BLSH   &kp DE_FLSH   &kp DE_LBRC   &kp DE_RBRC   &kp DE_STAR       &kp DE_QMARK  &kp DE_LBRC   &kp DE_RBRC  &kp DE_COLON   &kp DE_AT
+            &kp DE_HASH   &kp DE_DOLLAR &kp DE_PIPE   &kp DE_TILDE  &kp DE_APOS       &kp DE_PLUS   &kp DE_PRCNT  &kp DE_DQT   &kp DE_SQT     &kp DE_SEMI
+                                             &trans     &trans         &trans      &trans
             >;
-        };
-        
-        bt_controle_layer {
+       bt_controle_layer {
             bindings = <
            &sys_reset  &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans    &sys_reset
           &bootloader  &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans    &bootloader
             &trans     &trans     &trans    &bt BT_CLR &bt BT_SEL 2    &trans     &trans     &trans     &trans     &trans
-                                            &to 0     &trans          &trans     &l5
-            >;
-        };
-        gaming_layer {
-            bindings = <
-            &kp ESC    &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O
-            &kp LSHIFT &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L
-            &kp LCTRL  &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &to 0     &kp P
-                                             &kp TAB    &kp RET    &kp SPACE      &mo 2
+                                            &trans     &trans          &trans     &l5
             >;
         };
     };
