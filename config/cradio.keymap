@@ -44,7 +44,6 @@
           require-prior-idle-ms = <100>;
           bindings = <&kp>, <&kp>;
         };
-      };
        conditional_layers {
           compatible = "zmk,conditional-layers";
           tri_layer {
