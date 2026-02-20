@@ -4,7 +4,7 @@
 #include <behaviors.dtsi>
 // #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include "keys_de.h"
+#include <locale/keys_de.h>
 
 #define TD(name, ...) name: name { \
   compatible = "zmk,behavior-tap-dance"; \
@@ -32,6 +32,7 @@
       COMBO(combo_ae, 4 15, &kp DE_A_UMLAUT)
       COMBO(combo_ue, 3 15, &kp DE_U_UMLAUT)
       COMBO(combo_oe, 16 15, &kp DE_O_UMLAUT)
+      COMBO(combo_esc, 1 2, &kp ESC)
     };
     behaviors {
        conditional_layers {
@@ -50,26 +51,34 @@
             &kp DE_J      &kp DE_D      &kp DE_U      &kp DE_A      &kp DE_X          &kp DE_P      &kp DE_H      &kp DE_L      &kp DE_M      &kp DE_W
             &kp DE_C      &kp DE_T      &kp DE_I      &kp DE_E      &kp DE_O          &kp DE_N      &kp DE_R      &kp DE_S      &kp DE_G      &kp DE_Q
             &kp DE_F      &kp DE_V      &none         &none         &kp DE_B          &DE_kp Z      &DE_kp Y      &DE_kp COMMA  &DE_kp DOT    &DE_kp K
-                                             &lt 2 TAB      &kp ENTER         &kp SPC      &lt 1 BSPC
+                                             &lt 2 TAB      &kp ENTER         &ht SHIFT SPC      &lt 1 BSPC
             >;
        };
 
-       second_layer {
+       symbol_layer {
             bindings = <
-            &trans       &kp N1     &kp N2     &kp N3        &trans          &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp COLON
-            &trans       &kp N4     &kp N5     &kp N6        &trans          &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT   &kp SEMI
-            &caps_word   &kp N7     &kp N8     &kp N9        &kp N0          &trans     &trans     &trans     &trans     &trans
-                                               &trans        &kp ESC         &trans     &trans
+              &kp DE_EXCL &kp DE_AT &kp DE_HASH &kp DE_DOLLAR &kp DE_PERCENT    &kp DE_CARET &kp DE_AMPS &kp DE_STAR &kp DE_UNDER &kp DE_SEMI
+              &kp DE_GRAVE &kp DE_TILDE &kp DE_LBRC &kp DE_LPAR &kp DE_LBKT     &kp DE_COLON &kp DE_SUPER2 &kp RALT &kp RCTRL &kp RSHIFT
+              &kp DE_LT &kp DE_RT &kp DE_RBRC &kp DE_RPAR &kp DE_RBKT           &kp DE_PIPE  &kp DE_MINUS &kp DE_EQUAL &kp DE_PLUS &kp DE_BSLSH
+                                                              &trans &trans     &trans &trans
+            >;
+       };      
+       extension_layer {
+          bindings = <
+            &trans &trans &trans &trans &trans                    &kp HOME &kp PG_DN  &kp PG_UP  &kp END    &trans
+            &kp LSHIFT &kp LCTRL &kp LALT &kp DE_SUPER2 &trans    &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT    &trans
+            &trans &trans &trans &trans &trans                    &trans &trans     &trans     &trans     &trans
+                                 &trans &trans                    &trans &trans
+         >;
+       };
+        number_layer {
+          bindings = <
+            &trans &trans &trans &trans &trans                     &trans &kp N1     &kp N2     &kp N3        &trans          
+            &kp LSHIFT &kp LCTRL &kp LALT &kp DE_SUPER2 &trans     &trans &kp N4     &kp N5     &kp N6        &trans          
+            &trans &trans &trans &trans &trans                     &trans &kp N7     &kp N8     &kp N9        &kp N0          
+                                 &trans &trans                     &trans     &trans
             >;
         };
-
-       third_layer {
-            bindings = <
-            &trans     &trans     &kp LDE_BRC   &kp DE_RBRC   &kp DE_CARET      &kp DE_EXCL   &kp DE_LT     &kp DE_GT     &kp DE_EQ     &kp DE_AMPS
-            &kp DE_BLSH   &kp DE_FLSH   &kp DE_LBRC   &kp DE_RBRC   &kp DE_STAR       &kp DE_QMARK  &kp DE_LBRC   &kp DE_RBRC  &kp DE_COLON   &kp DE_AT
-            &kp DE_HASH   &kp DE_DOLLAR &kp DE_PIPE   &kp DE_TILDE  &kp DE_APOS       &kp DE_PLUS   &kp DE_PRCNT  &kp DE_DQT   &kp DE_SQT     &kp DE_SEMI
-                                             &trans     &trans         &trans      &trans
-            >;
        bt_controle_layer {
             bindings = <
            &sys_reset  &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans    &sys_reset
