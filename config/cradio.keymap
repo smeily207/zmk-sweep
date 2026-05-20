@@ -44,6 +44,8 @@
         COMBO(combo_ue, 12 13, &kp DE_U_UMLAUT)
         COMBO(combo_oe, 22 23, &kp DE_O_UMLAUT)
         COMBO(combo_esc, 1 2, &kp ESC)
+        COMBO(combo_mod, 16 17, &sk LGUI)
+        COMBO(combo_alt, 17 18, &sk LALT)
     };
 
     keymap {
