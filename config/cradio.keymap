@@ -55,8 +55,8 @@
             bindings = <
                 &kp J  &kp D  &kp U           &kp A      &kp X             &kp P           &kp H  &kp L         &kp M       &kp W
                 &kp C  &kp T  &kp I           &kp E      &kp O             &kp B           &kp N  &kp R         &kp S       &kp G
-                &kp F  &kp V  &kp DE_SHARP_S  &kp Q      &kp SPACE         &kp Y           &kp Z  &kp DE_COMMA  &kp DE_DOT  &kp K
-                              /*&mt LCTRL ESC*/   &lt SYM TAB  &mt LGUI ENTER  &mt LSHIFT SPACE  &lt NAV BSPC
+                &kp F  &kp V  &kp DE_SHARP_S  &kp Q      &kp LCTRL         &kp Y           &kp Z  &kp DE_COMMA  &kp DE_DOT  &kp K
+                                              &lt SYM TAB  &mt LGUI ENTER  &mt LSHIFT SPACE  &lt NAV BSPC
             >;
         };
 
