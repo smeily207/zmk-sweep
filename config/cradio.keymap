@@ -10,8 +10,8 @@
 #define NAV     4
 #define BT      5
 
-#define L_HOME(k1, k2, k3, k4) &lt LSHIFT k1 &lt LALT k2 &lt LCTRL k3 &lt LGUI k4
-#define R_HOME(k1, k2, k3, k4) &lt LGUI k1 &lt LCTRL k2 &lt LALT k3 &lt LSHIFT k4
+#define L_HOME(k1, k2, k3, k4) &mt LSHIFT k1 &mt LALT k2 &mt LCTRL k3 &mt LGUI k4
+#define R_HOME(k1, k2, k3, k4) &mt LGUI k1 &mt LCTRL k2 &mt LALT k3 &mt LSHIFT k4
 
 #define COMBO(name, key_positions, binding) name { \
   timeout-ms = <50>; \
