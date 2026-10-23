@@ -3,14 +3,23 @@
 #include <dt-bindings/zmk/bt.h>
 #include <locale/keys_de.h>
 
-
 #define DEFAULT 0
-#define QWERTZ  1
-#define GAMING  2
-#define GNUM    3
-#define SYM     4
-#define NAV     5
-#define BT      6
+#define GAMING  1
+#define GNUM    2
+#define SYM     3
+#define NAV     4
+#define BT      5
+
+#define L_HOME(k1, k2, k3, k4) &lt LSHIFT k1 &lt LALT k2 &lt LCTRL k3 &lt LGUI k4
+#define R_HOME(k1, k2, k3, k4) &lt LGUI k1 &lt LCTRL k2 &lt LALT k3 &lt LSHIFT k4
+
+/* #define DEFAULT 0 */
+/* #define QWERTZ  1 */
+/* #define GAMING  2 */
+/* #define GNUM    3 */
+/* #define SYM     4 */
+/* #define NAV     5 */
+/* #define BT      6 */
 
 #define COMBO(name, key_positions, binding) name { \
   timeout-ms = <50>; \
@@ -38,7 +47,7 @@
     };
     combos {
         compatible = "zmk,combos";
-        COMBO(combo_toggle_qwertz, 10 11 12 13, &tog QWERTZ)
+        /* COMBO(combo_toggle_qwertz, 10 11 12 13, &tog QWERTZ) */
         COMBO(combo_toggle_gaming, 16 17 18 19, &tog GAMING)
         COMBO(combo_ae, 2 3, &kp DE_A_UMLAUT)
         COMBO(combo_ue, 12 13, &kp DE_U_UMLAUT)
@@ -54,21 +63,21 @@
             display-name = "Default Layer";
             bindings = <
                 &kp J  &kp D  &kp U           &kp A      &kp X             &kp P           &kp H  &kp L         &kp M       &kp W
-                &kp C  &kp T  &kp I           &kp E      &kp O             &kp B           &kp N  &kp R         &kp S       &kp G
+                L_HOME(C, T, I, E)                       &kp O             &kp B           R_HOME(N, R, S, G)
                 &kp F  &kp V  &kp DE_SHARP_S  &kp Q      &kp LCTRL         &kp Y           &kp Z  &kp DE_COMMA  &kp DE_DOT  &kp K
-                                              &lt SYM TAB  &mt LGUI ENTER  &mt LSHIFT SPACE  &lt NAV BSPC
+                                              &lt SYM TAB  &kp ENTER  &kp SPACE  &lt NAV BSPC
             >;
         };
 
-        qwertz_layer {
-            display-name = "QWERTZ Layer";
-            bindings = <
-                &kp Q      &kp W      &kp E      &kp R      &kp T          &kp DE_Z   &kp U      &kp I      &kp O      &kp P
-                &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L      &kp DE_O_UMLAUT
-                &kp DE_Y    &kp X     &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp DE_MINUS
-                                           &trans     &trans         &trans     &trans
-            >;
-        };
+        /* qwertz_layer { */
+        /*     display-name = "QWERTZ Layer"; */
+        /*     bindings = < */
+        /*         &kp Q      &kp W      &kp E      &kp R      &kp T          &kp DE_Z   &kp U      &kp I      &kp O      &kp P */
+        /*         &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L      &kp DE_O_UMLAUT */
+        /*         &kp DE_Y    &kp X     &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp DE_MINUS */
+        /*                                    &trans     &trans         &trans     &trans */
+        /*     >; */
+        /* }; */
         gaming_layer {
             display-name = "gaming Layer";
             bindings = <
@@ -81,10 +90,10 @@
         gnum_layer {
             display-name = "gaming number Layer";
             bindings = <
-            &trans     &trans     &trans     &trans     &trans          &trans      &trans      &trans      &trans      &trans
-            &kp DE_N1  &kp DE_N2  &kp DE_N3  &kp DE_N4  &kp DE_N5       &trans      &trans      &trans      &trans      &trans
-            &trans     &trans     &trans     &trans     &trans          &trans      &trans      &trans      &trans      &trans
-                                             &trans     &trans          &trans      &trans 
+                 &trans        &kp DE_N7  &kp DE_N8  &kp DE_N9  &kp DE_PLUS     &trans      &trans      &trans      &trans      &trans
+                 &kp DE_N0     &kp DE_N4  &kp DE_N5  &kp DE_N6  &kp DE_COMMA    &trans      &trans      &trans      &trans      &trans
+                 &kp DE_COLON  &kp DE_N1  &kp DE_N2  &kp DE_N3  &kp DE_SEMI     &trans      &trans      &trans      &trans      &trans
+                                                     &trans     &trans          &trans      &trans 
             >;
         };
         symbol_layer {
